@@ -14,6 +14,9 @@ class ScoresController < ApplicationController
   def create
   end
 
+  def display_score
+  end
+
   def update
   end
 
