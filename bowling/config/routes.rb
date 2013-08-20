@@ -1,4 +1,18 @@
 Bowling::Application.routes.draw do
+  get "scores/index"
+
+  get "scores/show"
+
+  get "scores/new"
+
+  get "scores/edit"
+
+  get "scores/create"
+
+  get "scores/update"
+
+  get "scores/destroy"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
