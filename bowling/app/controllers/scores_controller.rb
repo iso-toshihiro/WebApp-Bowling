@@ -12,6 +12,8 @@ class ScoresController < ApplicationController
   end
 
   def create
+    @name = params[:player_name]
+    @date = params[:game_date]
   end
 
   def display_score
