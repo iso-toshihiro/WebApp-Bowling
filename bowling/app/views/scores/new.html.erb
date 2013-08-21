@@ -1,2 +1,20 @@
-<h1>Scores#new</h1>
-<p>Find me in app/views/scores/new.html.erb</p>
+
+
+
+
+
+<p>新規登録</p>
+  
+<form method="post" action="/scores">
+ <p>
+   名前：<input type="text" name="player_name" /><br />
+   日付：<input type="text" name="game_date" /><br /><br />
+   あなたの倒したピンの数を入力してください。<br />
+   １フレーム目　１投目：<input type="integer" name="dawn_pin[0]" />　　２投目：<input type="integer" name="dawn_pin[1]" /><br />
+   ２フレーム目　１投目：<input type="integer" name="dawn_pin[2]" />　　２投目：<input type="integer" name="dawn_pin[3]" /><br />
+   <input type="submit" value="確定" />
+ </p>
+</form>
+
+
+
