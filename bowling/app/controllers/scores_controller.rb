@@ -14,6 +14,8 @@ class ScoresController < ApplicationController
   def create
     @name = params[:player_name]
     @date = params[:game_date]
+    pins =  params[:dawn_pin]
+    @total = pins[0].to_i + pins[1].to_i + pins[2].to_i + pins[3].to_i
   end
 
   def display_score
