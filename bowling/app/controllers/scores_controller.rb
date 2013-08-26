@@ -1,5 +1,8 @@
+require 'score_calcuration'
+
 class ScoresController < ApplicationController
   def index
+    @scores = Score.all
   end
 
   def show
@@ -14,8 +17,10 @@ class ScoresController < ApplicationController
   def create
     @name = params[:player_name]
     @date = params[:game_date]
-    pins =  params[:dawn_pin]
-    @total = pins[0].to_i + pins[1].to_i + pins[2].to_i + pins[3].to_i
+    @down_pins = params[:down_pin]
+    get_scores = Score_calcuration.new (@down_pins)
+    get_scores.calcurate_scores
+    @total = get_scores.scores
   end
 
   def display_score
