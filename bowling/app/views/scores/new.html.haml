@@ -1,0 +1,71 @@
+%h1 新規登録
+
+%form{:method=>"post",:action=>"/scores"}
+  %p
+    プレーヤーの名前：
+    %input{:type=>"text", :name=>"player_name"}
+    %br
+    ゲームをした日時 ：
+    %input{:type=>"text", :name=>"game_date"}
+    %br
+    %br
+    あなたが倒したピンの数を入力してください。
+    %br
+    %br
+    １フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ２フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ３フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ４フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ５フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ６フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ７フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ８フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    ９フレーム目　　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}
+    %br
+    １０フレーム目　１投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ２投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    ３投目：
+    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2"}　
+    %br
+    %br
+    %input{:type=>"submit", :value=>"確定"}
+
+
+= link_to 'Start Page', '/'
