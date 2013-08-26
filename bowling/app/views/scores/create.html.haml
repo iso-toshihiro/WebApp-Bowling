@@ -1,0 +1,14 @@
+%h1 あなたのスコアは
+
+
+%p
+  名前：
+  = @name 
+
+%p
+  日付：
+  = @date
+
+= render 'shared/score_table'
+
+= link_to 'Start Page', '/' 
