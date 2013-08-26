@@ -1,0 +1,25 @@
+
+%p
+  %table{:border=>"1", :cellpadding=>"3"}
+    %tr
+      - for i in 1..10
+        %th
+          %font{:size=>"2"}
+            = i
+            フレーム
+    %tr
+      - for i in 1..9
+        %td
+          = @down_pins[2*i-2]
+          　
+          = @down_pins[2*i-1]
+      %td
+        = @down_pins[18]
+        　
+        = @down_pins[19]
+        　
+        = @down_pins[20]
+    %tr
+      - for i in 1..10
+        %td{:align=>"right"}
+          = @total[i-1]
