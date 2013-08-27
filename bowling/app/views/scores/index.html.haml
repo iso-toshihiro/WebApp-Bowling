@@ -11,7 +11,8 @@
       %th 操作
     - @scores.each do |score|
       %tr
-        %td{:align=>"center"} = score.id
+        %td{:align=>"center"} 
+          = score.id
         %td
           = score.player_name
         %td
