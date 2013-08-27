@@ -15,6 +15,9 @@ class ScoresController < ApplicationController
   end
 
   def create
+  end
+
+  def confirm
     @name = params[:player_name]
     if params[:current_time] == "on"
       @date = Time.now
@@ -25,9 +28,6 @@ class ScoresController < ApplicationController
     get_scores = Score_calcuration.new (@down_pins)
     get_scores.calcurate_scores
     @total = get_scores.scores
-  end
-
-  def display_score
   end
 
   def update
