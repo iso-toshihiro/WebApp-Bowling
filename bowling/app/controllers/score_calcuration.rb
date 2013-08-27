@@ -73,10 +73,9 @@ class Score_calcuration
   end
   
   def calcurate_10frame_score
-    if strike?(10) or spare?(10) 
-      @scores[9] = @scores[8] + @get.first_roll(10) + @get.second_roll(10) + @get.third_roll(10)
-    else
-      @scores[9] = @scores[8] + @get.first_roll(10) + @get.second_roll(10)
+    @scores[9] = @scores[8] + @get.first_roll(10) + @get.second_roll(10)
+    if strike?(10) or spare?(10) #ストライクとスペアの場合のみ3投目も追加
+      @scores[9] += @get.third_roll(10)
     end
   end
   
