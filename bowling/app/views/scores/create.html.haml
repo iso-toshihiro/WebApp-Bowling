@@ -1,16 +1,8 @@
 %h1 登録完了しました
 
 
-%p
-  名前：
-  %b
-    = @name 
-
-%p
-  日付：
-  %b
-    = @date
-
 = render 'shared/score_table'
+
+= link_to 'Index Page', '/scores' 
 
 = link_to 'Start Page', '/' 

@@ -2,15 +2,6 @@
 
 %p このスコアをデータベースに登録します。宜しければ下の登録ボタンをクリックしてください。
 
-%p
-  プレーヤーの名前：
-  %b
-    = @name 
-
-%p
-  ゲームをした日時：
-  %b
-    = @date
 
 = render 'shared/score_table'
 
@@ -24,5 +15,7 @@
   %input{:type=>"submit", :name=>"ok", :value=>"登録"}
 %br
 %br
+
+= link_to 'Index Page', '/scores' 
 
 = link_to 'Start Page', '/' 
