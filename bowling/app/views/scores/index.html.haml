@@ -16,7 +16,10 @@
         %td
           = score.player_name
         %td
-          = score.game_date
+          - if score.game_date
+            = score.game_date.localtime
+          - else
+            = score.game_date
         %td{:align=>"center"}
           = score.score_10_frame
         %td
