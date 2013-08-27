@@ -1,13 +1,15 @@
-%h1 あなたのスコアは
+%h1 登録完了しました
 
 
 %p
   名前：
-  = @name 
+  %b
+    = @name 
 
 %p
   日付：
-  = @date
+  %b
+    = @date
 
 = render 'shared/score_table'
 
