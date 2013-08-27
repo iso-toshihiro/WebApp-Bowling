@@ -3,19 +3,25 @@
 %p このスコアをデータベースに登録します。宜しければ下の登録ボタンをクリックしてください。
 
 %p
-  名前：
+  プレーヤーの名前：
   %b
     = @name 
 
 %p
-  日付：
+  ゲームをした日時：
   %b
     = @date
 
 = render 'shared/score_table'
 
-%form{:method 'post', :action '/scores'}
-  %input{:type 'submit', :name 'ok', :value '登録'}
+%form{:method=>"post", :action=>"/scores"}
+  %input{:type=>"hidden", :name=>"player_name", :value=>@name}
+  %input{:type=>"hidden", :name=>"game_date", :value=>@date}
+  - for i in 0..20
+    %input{:type=>"hidden", :name=>"down_pin[]", :value=>@down_pins[i]}
+  -for i in 0..9
+    %input{:type=>"hidden", :name=>"total[]", :value=>@total[i]}
+  %input{:type=>"submit", :name=>"ok", :value=>"登録"}
 %br
 %br
 
