@@ -3,10 +3,8 @@ class Get_down_pin_number
 
   def initialize(down_pins)
     @down_pin_list = []
-    i = 0
-    down_pins.each do |pins|  #整数値に変換
+    down_pins.each.with_index do |pins, i|  #整数値に変換
       @down_pin_list[i] = pins.to_i
-      i += 1  
     end
   end
   
