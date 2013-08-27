@@ -11,11 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822042313) do
+ActiveRecord::Schema.define(:version => 20130827071155) do
 
   create_table "scores", :force => true do |t|
     t.string   "player_name"
-    t.time     "game_date"
     t.integer  "down_pins_1st_roll_1_frame"
     t.integer  "down_pins_2nd_roll_1_frame"
     t.integer  "down_pins_1st_roll_2_frame"
@@ -49,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130822042313) do
     t.integer  "score_10_frame"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.datetime "game_date"
   end
 
 end
