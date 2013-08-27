@@ -76,7 +76,7 @@ class Score_calcuration
   
   def calcurate_10frame_score
     if strike?(10) or spare?(10) 
-      @scores[9] = @scores[8] + @get.first_roll(10) + @get.second_roll(10) + third_roll(10)
+      @scores[9] = @scores[8] + @get.first_roll(10) + @get.second_roll(10) + @get.third_roll(10)
     else
       @scores[9] = @scores[8] + @get.first_roll(10) + @get.second_roll(10)
     end
