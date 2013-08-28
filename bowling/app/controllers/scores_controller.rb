@@ -1,4 +1,4 @@
-require 'score_calcuration'
+require 'score_calculation'
 
 class ScoresController < ApplicationController
 
@@ -17,15 +17,15 @@ class ScoresController < ApplicationController
 
   def confirm
     @name = params[:player_name]
-    if params[:current_time] == "on"
+    if params[:current_time] == 'on'
       @date = Time.now
     else
       @date = params[:game_date]
     end
     @down_pins = params[:down_pin]
-    get_scores = Score_calcuration.new (@down_pins)
-    get_scores.calcurate_scores
-    @total = get_scores.scores
+    scores = ScoreCalculator.new (@down_pins)
+    scores.calculate_scores
+    @total = scores.scores
   end
 
   def create

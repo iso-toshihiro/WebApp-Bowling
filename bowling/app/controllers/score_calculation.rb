@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class Get_down_pin_number
+class DownPinNumber
 
   def initialize(down_pins)
     @down_pin_list = []
@@ -8,74 +8,73 @@ class Get_down_pin_number
     end
   end
   
-  def first_roll(frame)
+  def get_first_roll(frame)
     return @down_pin_list[2*frame-2]
   end
 
-  def second_roll(frame)
+  def get_second_roll(frame)
     return @down_pin_list[2*frame-1]
   end
   
-  def third_roll(frame) #10フレーム目の3投目
+  def get_third_roll(frame) #10フレーム目の3投目
     return @down_pin_list[2*frame]
   end
 
 end
 
-class Score_calcuration
+class ScoreCalculator
 
   attr_accessor :scores
 
   def initialize(down_pins)
     @scores = []
     @bonus_point = 0 #ストライクとスペアのボーナス得点
-    @get = Get_down_pin_number.new (down_pins)
+    @pin = DownPinNumber.new (down_pins)
   end
   
-  def strike? (frame)
-    @get.first_roll(frame) == 10
+  def strike?(frame)
+    @pin.get_first_roll(frame) == 10
   end
 
-  def spare? (frame)
-    @get.first_roll(frame) + @get.second_roll(frame) == 10
+  def spare?(frame)
+    @pin.get_first_roll(frame) + @pin.get_second_roll(frame) == 10
   end
 
-  def calcurate_scores
-    #1フレーム目から9フレーム目の計算
+  def calculate_scores
     for frame in 1..9
-      calcurate_1_9frame_score(frame)
+      calculate_1_9frame_score(frame)
     end
 
     #10フレーム目の計算
-    calcurate_10frame_score
+    calculate_10frame_score
 
   end
 
-  def calcurate_1_9frame_score(frame)
-    if strike?(frame) and strike?(frame+1) #次フレームもストライクの場合
-      @bonus_point = @get.first_roll(frame+1) + @get.first_roll(frame+2)
+  def calculate_1_9frame_score(frame)
+    if strike?(frame) && strike?(frame+1) #次フレームもストライクの場合
+      @bonus_point = @pin.get_first_roll(frame+1) + @pin.get_first_roll(frame+2)
       if frame == 9 #9フレーム目だけ特別
-        @bonus_point = @get.first_roll(10) + @get.second_roll(10)
+        @bonus_point = @pin.get_first_roll(10) + @pin.get_second_roll(10)
       end
     elsif strike?(frame) #ストライクの場合
-      @bonus_point = @get.first_roll(frame+1) + @get.second_roll(frame+1)
+      @bonus_point = @pin.get_first_roll(frame+1) + @pin.get_second_roll(frame+1)
     elsif spare?(frame) #スペアの場合
-      @bonus_point = @get.first_roll(frame+1)
+      @bonus_point = @pin.get_first_roll(frame+1)
     else
       @bonus_point = 0
     end
 
     if frame == 1
-      @scores[0] = @get.first_roll(1) + @get.second_roll(1) + @bonus_point
+      @scores[0] = @pin.get_first_roll(1) + @pin.get_second_roll(1) + @bonus_point
     else
-      @scores[frame-1] = @scores[frame-2] + @get.first_roll(frame) + @get.second_roll(frame) + @bonus_point
+      @scores[frame-1] = @scores[frame-2] + @pin.get_first_roll(frame) + @pin.get_second_roll(frame) + @bonus_point
     end
   end
   
-  def calcurate_10frame_score
-    @scores[9] = @scores[8] + @get.first_roll(10) + @get.second_roll(10)
-    if strike?(10) or spare?(10) #ストライクとスペアの場合のみ3投目も追加
-      @scores[9] += @get.third_roll(10)
+  def calculate_10frame_score
+    @scores[9] = @scores[8] + @pin.get_first_roll(10) + @pin.get_second_roll(10)
+    if strike?(10) || spare?(10) #ストライクとスペアの場合のみ3投目も追加
+      @scores[9] += @pin.get_third_roll(10)
     end
   end
   
