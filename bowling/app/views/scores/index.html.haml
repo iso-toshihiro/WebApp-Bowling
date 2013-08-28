@@ -2,7 +2,7 @@
 
 %p
   = link_to '新規作成', new_score_path
-  %table{:border=>"4", :cellpadding=>"6"}
+  %table{border: '4', cellpadding: '6'}
     %tr
       %th 番号
       %th プレーヤー
@@ -11,7 +11,7 @@
       %th 操作
     - @scores.each do |score|
       %tr
-        %td{:align=>"center"} 
+        %td{align: 'center'} 
           = score.id
         %td
           = score.player_name
@@ -20,11 +20,11 @@
             = score.game_date.localtime
           - else
             = score.game_date
-        %td{:align=>"center"}
+        %td{align: 'center'}
           = score.score_10_frame
         %td
           = link_to '詳細', score_path(score.id)
           = link_to '編集', edit_score_path(score.id)
-          = link_to '削除', score_path(score.id), :method =>"delete"
+          = link_to '削除', score_path(score.id), method: 'delete'
 
 = link_to 'Start Page', '/'
