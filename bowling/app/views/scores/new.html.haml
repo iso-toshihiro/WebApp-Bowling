@@ -1,13 +1,13 @@
 %h1 新規登録
 
-%form{:method=>"post", :action=>"confirm"}
+%form{method: 'post', action: 'confirm'}
   %p
     プレーヤーの名前：
-    %input{:type=>"text", :name=>"player_name", :value=>"ユーザー"}
+    %input{type: 'text', name: 'player_name', value: 'ユーザー'}
     %br
     ゲームをした日時 ：
-    %input{:type=>"text", :name=>"game_date", :value=>"2013-08-27 12:00:00"}
-    %input{:type=>"checkbox", :name=>"current_time", :value=>"on"}現在時刻を入力
+    %input{type: 'text', name: 'game_date', value: '2013-08-27 12:00:00'}
+    %input{type: 'checkbox', name: 'current_time', value: 'on'}現在時刻を入力
     %br
     例：2013-08-27 12:00:00
     %br
@@ -18,19 +18,19 @@
 
     - 1.upto(9) do |i|
       = "#{i} フレーム目　　１投目："
-      %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2", :value=>"0"}　
+      %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: '0'}　
       ２投目：
-      %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2", :value=>"0"}
+      %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: '0'}
       %br
     10フレーム目　　１投目：
-    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2", :value=>"0"}　
+    %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: '0'}　
     ２投目：
-    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2", :value=>"0"}　
+    %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: '0'}　
     ３投目：
-    %input{:type=>"text", :name=>"down_pin[]", :size=>"1", :maxlength=>"2", :value=>"0"}　
+    %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: '0'}　
     %br
     %br
-    %input{:type=>"submit", :value=>"確定"}
+    %input{type: 'submit', value: '確定'}
 
 
 = link_to 'Start Page', '/'
