@@ -1,0 +1,32 @@
+%p
+  プレーヤーの名前：
+  %input{type: 'text', name: 'player_name', value: @name}
+  %br
+  ゲームをした日時 ：
+  %input{type: 'text', name: 'game_date', value: @date}
+  - if @from == 'new'
+    %input{type: 'checkbox', name: 'current_time', value: 'on'}現在時刻を入力
+  %br
+  例：2013-08-27 12:00:00
+  %br
+  %br
+  プレーヤーが倒したピンの数を入力してください。
+  %br
+  %br
+
+  - 1.upto(9) do |i|
+    = "#{i} フレーム目　　１投目："
+    %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: @pin_list[2*i-2]}　
+    ２投目：
+    %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: @pin_list[2*i-1]}
+    %br
+  10フレーム目　　１投目：
+  %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: @pin_list[18]}　
+  ２投目：
+  %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: @pin_list[19]}　
+  ３投目：
+  %input{type: 'text', name: 'down_pin[]', size: '1', maxlength: '2', value: @pin_list[20]}　
+  %br
+  %br
+  %input{type: 'submit', value: '確定'}
+  %input{type: 'hidden', name: 'from', value: @from}
