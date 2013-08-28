@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# coding : utf-8
 require 'score_calculation'
 
 class ScoresController < ApplicationController
@@ -10,12 +12,23 @@ class ScoresController < ApplicationController
   end
 
   def new
+    @from = 'new'
+    @name = 'ユーザー'
+    @date = '2013-08-25 12:00:00'
+    @pin_list = Array.new(21,0)
   end
 
   def edit
+    @scores = Score.find(params[:id])
+    @name = @scores.player_name
+    @date = @scores.game_date
+    score_object = Score.new
+    @pin_list = score_object.get_down_pin_list(@scores)
+    @from = 'edit'
   end
 
   def confirm
+    @from = params[:from]
     @name = params[:player_name]
     if params[:current_time] == 'on'
       @date = Time.now
