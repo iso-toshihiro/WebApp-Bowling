@@ -1,12 +1,12 @@
 %p
   プレーヤーの名前：
   %b
-    = @old_name 
+    = @old_player_name 
 
 %p
   ゲームをした日時：
   %b
-    = @old_date
+    = @old_game_date
 
 %p
   %table{border: '1', cellpadding: '3'}
@@ -31,4 +31,4 @@
     %tr
       - 1.upto(10) do |i|
         %td{align: 'right'}
-          = @old_total[i-1]
+          = @old_score_list[i-1]
