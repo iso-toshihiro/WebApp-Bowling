@@ -1,9 +1,9 @@
 %p
   プレーヤーの名前：
-  %input{type: 'text', name: 'new_player_name', value: @name}
+  %input{type: 'text', name: 'new_player_name', value: @player_name}
   %br
   ゲームをした日時 ：
-  %input{type: 'text', name: 'new_game_date', value: @date}
+  %input{type: 'text', name: 'new_game_date', value: @game_date}
   - if @from == 'new'
     %input{type: 'checkbox', name: 'current_time', value: 'on'}現在時刻を入力
   %br
@@ -16,16 +16,16 @@
 
   - 1.upto(9) do |i|
     = "#{i} フレーム目　　１投目："
-    %input{type: 'text', name: 'new_down_pin[]', size: '1', maxlength: '2', value: @pin_list[2*i-2]}　
+    %input{type: 'text', name: 'new_down_pins[]', size: '1', maxlength: '2', value: @down_pins[2*i-2]}　
     ２投目：
-    %input{type: 'text', name: 'new_down_pin[]', size: '1', maxlength: '2', value: @pin_list[2*i-1]}
+    %input{type: 'text', name: 'new_down_pins[]', size: '1', maxlength: '2', value: @down_pins[2*i-1]}
     %br
   10フレーム目　　１投目：
-  %input{type: 'text', name: 'new_down_pin[]', size: '1', maxlength: '2', value: @pin_list[18]}　
+  %input{type: 'text', name: 'new_down_pins[]', size: '1', maxlength: '2', value: @down_pins[18]}　
   ２投目：
-  %input{type: 'text', name: 'new_down_pin[]', size: '1', maxlength: '2', value: @pin_list[19]}　
+  %input{type: 'text', name: 'new_down_pins[]', size: '1', maxlength: '2', value: @down_pins[19]}　
   ３投目：
-  %input{type: 'text', name: 'new_down_pin[]', size: '1', maxlength: '2', value: @pin_list[20]}　
+  %input{type: 'text', name: 'new_down_pins[]', size: '1', maxlength: '2', value: @down_pins[20]}　
   %br
   %br
   %input{type: 'hidden', name: 'from', value: @from}
