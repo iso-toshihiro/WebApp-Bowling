@@ -1,6 +1,9 @@
 %h1 編集
 
-%form{method: 'post', action: 'confirm'}
+%form{method: 'post', action: '/scores/confirm'}
+  = render 'shared/argument_transfer'
+  %input{type: 'hidden', name: 'id', value: @id}
   = render 'shared/input_pin_number'
 
 = link_to 'Start Page', '/'
+
