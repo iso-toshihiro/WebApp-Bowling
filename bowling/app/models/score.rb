@@ -70,9 +70,9 @@ class Score < ActiveRecord::Base
     return pin_list
   end
 
-  def get_score_list(id)
+  def get_score_list(db_record)
     score_list = []
-    scores = self.find(id)
+    scores = db_record
     score_list[0] = scores.score_1_frame
     score_list[1] = scores.score_2_frame
     score_list[2] = scores.score_3_frame
