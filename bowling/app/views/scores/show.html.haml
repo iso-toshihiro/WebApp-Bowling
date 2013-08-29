@@ -1,0 +1,12 @@
+
+%h1 スコア詳細確認
+
+= render 'shared/score_table'
+
+= link_to '編集', edit_score_path(@id)
+= link_to '削除', score_path(@id), method: 'delete'
+
+%br
+%br
+
+= link_to 'Start Page', '/'
