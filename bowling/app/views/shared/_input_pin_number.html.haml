@@ -3,7 +3,7 @@
   %input{type: 'text', name: 'new_player_name', value: @player_name}
   %br
   ゲームをした日時 ：
-  %input{type: 'text', name: 'new_game_date', value: @game_date}
+  %input{type: 'text', name: 'new_game_date', maxlength: '19', value: @game_date}
   - if @from == 'new'
     %input{type: 'checkbox', name: 'current_time', value: 'on'}現在時刻を入力
   %br
