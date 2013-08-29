@@ -1,0 +1,10 @@
+%input{type: 'hidden', name: 'player_name', value: @name}
+%input{type: 'hidden', name: 'old_player_name', value: @name}
+%input{type: 'hidden', name: 'game_date', value: @date}
+%input{type: 'hidden', name: 'old_game_date', value: @date}
+- 0.upto(20) do |i|
+  %input{type: 'hidden', name: 'down_pin[]', value: @down_pins[i]}
+  %input{type: 'hidden', name: 'old_down_pin[]', value: @down_pins[i]}
+- 0.upto(9) do |i|
+  %input{type: 'hidden', name: 'total[]', value: @total[i]}
+  %input{type: 'hidden', name: 'old_total[]', value: @total[i]}
