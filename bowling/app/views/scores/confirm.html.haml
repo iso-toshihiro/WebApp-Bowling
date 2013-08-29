@@ -1,18 +1,25 @@
-%h1 登録確認  
 
-%p このスコアをデータベースに登録します。宜しければ下の登録ボタンをクリックしてください。
+- if @from == 'new' 
+  %h1 登録確認  
+  %p このスコアをデータベースに登録します。宜しければ下の登録ボタンをクリックしてください。
+  = render 'shared/score_table'
+  %form{method: 'post', action: '/scores'}
+    = render 'shared/argument_transfer'
+    %input{type: 'submit', name: 'ok', value: '登録'}
 
+- elsif @from == 'edit' 
+  %h1 更新確認  
+  %p このスコアを新しく更新します。宜しければ下の更新ボタンをクリックしてください。
+  %p 更新前のスコア
+  = render 'shared/old_score_table'
+  %h1 
+    %div{align: 'center'} ↓
+  %p 更新後のスコア
+  = render 'shared/score_table'
+  = form_tag(@id, method: 'put') do
+    = render 'shared/argument_transfer'
+    %input{type: 'submit', name: 'update', value: '更新'}
 
-= render 'shared/score_table'
-
-%form{:method=>"post", :action=>"/scores"}
-  %input{:type=>"hidden", :name=>"player_name", :value=>@name}
-  %input{:type=>"hidden", :name=>"game_date", :value=>@date}
-  - for i in 0..20
-    %input{:type=>"hidden", :name=>"down_pin[]", :value=>@down_pins[i]}
-  -for i in 0..9
-    %input{:type=>"hidden", :name=>"total[]", :value=>@total[i]}
-  %input{:type=>"submit", :name=>"ok", :value=>"登録"}
 %br
 %br
 
