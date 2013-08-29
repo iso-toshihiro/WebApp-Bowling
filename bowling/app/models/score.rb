@@ -34,15 +34,6 @@ class Score < ActiveRecord::Base
              :score_9_frame, 
              :score_10_frame
 
-  def isoiso(ff)
-    dd = ff
-    list = []
-    list[0] = dd.down_pins_1st_roll_1_frame
-    list[1] = dd.down_pins_2nd_roll_1_frame
-    return list
-  end
-
-
   def get_down_pin_list(db_record)
     pin_list = []
     scores = db_record
