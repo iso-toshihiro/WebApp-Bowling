@@ -24,10 +24,10 @@ end
 
 class ScoreCalculator
 
-  attr_accessor :scores
+  attr_accessor :score_list
 
   def initialize(down_pins)
-    @scores = []
+    @score_list = []
     @bonus_point = 0 #ストライクとスペアのボーナス得点
     @pin = DownPinNumber.new (down_pins)
   end
@@ -40,14 +40,15 @@ class ScoreCalculator
     @pin.get_first_roll(frame) + @pin.get_second_roll(frame) == 10
   end
 
-  def calculate_scores
-    for frame in 1..9
+  def calculate_score_list
+    1.upto(9) do |frame|
       calculate_1_9frame_score(frame)
     end
 
     #10フレーム目の計算
     calculate_10frame_score
 
+    return @score_list
   end
 
   def calculate_1_9frame_score(frame)
@@ -65,16 +66,16 @@ class ScoreCalculator
     end
 
     if frame == 1
-      @scores[0] = @pin.get_first_roll(1) + @pin.get_second_roll(1) + @bonus_point
+      @score_list[0] = @pin.get_first_roll(1) + @pin.get_second_roll(1) + @bonus_point
     else
-      @scores[frame-1] = @scores[frame-2] + @pin.get_first_roll(frame) + @pin.get_second_roll(frame) + @bonus_point
+      @score_list[frame-1] = @score_list[frame-2] + @pin.get_first_roll(frame) + @pin.get_second_roll(frame) + @bonus_point
     end
   end
   
   def calculate_10frame_score
-    @scores[9] = @scores[8] + @pin.get_first_roll(10) + @pin.get_second_roll(10)
+    @score_list[9] = @score_list[8] + @pin.get_first_roll(10) + @pin.get_second_roll(10)
     if strike?(10) || spare?(10) #ストライクとスペアの場合のみ3投目も追加
-      @scores[9] += @pin.get_third_roll(10)
+      @score_list[9] += @pin.get_third_roll(10)
     end
   end
   
