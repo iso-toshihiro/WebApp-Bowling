@@ -9,6 +9,13 @@ class ScoresController < ApplicationController
   end
 
   def show
+    @score_db_record = Score.find(params[:id])
+    @player_name = @score_db_record.player_name
+    @game_date = @score_db_record.game_date.localtime
+    score_object = Score.new
+    @down_pins = score_object.get_down_pin_list(@score_db_record)
+    @score_list = score_object.get_score_list(@score_db_record)
+    @id = params[:id]
   end
 
   def new
@@ -21,7 +28,7 @@ class ScoresController < ApplicationController
   def edit
     @score_db_record = Score.find(params[:id])
     @player_name = @score_db_record.player_name
-    @game_date = @score_db_record.game_date
+    @game_date = @score_db_record.game_date.localtime
     score_object = Score.new
     @down_pins = score_object.get_down_pin_list(@score_db_record)
     @score_list = score_object.get_score_list(@score_db_record)
