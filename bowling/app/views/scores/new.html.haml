@@ -1,6 +1,10 @@
 
 %h1 新規登録
 
+- if @error == 1
+  %font{size: '5', color: '#ff0000'}
+    %b 入力した値にエラーがあります。確認して、正しい値を入力してください。
+
 %form{method: 'post', action: 'confirm'}
   = render 'shared/input_pin_number'
 
