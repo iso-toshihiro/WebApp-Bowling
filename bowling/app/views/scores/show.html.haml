@@ -4,7 +4,7 @@
 = render 'shared/score_table'
 
 = link_to '編集', edit_score_path(@id)
-= link_to '削除', score_path(@id), method: 'delete'
+= link_to '削除', score_path(@id), method: 'delete', confirm: '削除してもよろしいですか？'
 
 %br
 %br
