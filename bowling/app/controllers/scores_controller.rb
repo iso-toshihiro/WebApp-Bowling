@@ -139,5 +139,9 @@ class ScoresController < ApplicationController
   end
 
   def destroy
+    @score_db_record = Score.find(params[:id])
+    @score_db_record.destroy
+    #Score.delete(params[:id])
+
   end
 end
