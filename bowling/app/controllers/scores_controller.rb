@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # coding : utf-8
 require 'score_calculation'
+require 'validation'
 
 class ScoresController < ApplicationController
 
@@ -19,10 +20,16 @@ class ScoresController < ApplicationController
   end
 
   def new
+    if params[:from] == 'create'
+      @player_name =  params[:ggg]
+      @error = 1
+      @down_pins = params[:down_pins]
+    else
+      @player_name = 'ユーザー'
+      @down_pins = Array.new(21,0)
+      @game_date = '2013-08-25 12:00:00'
+    end
     @from = 'new'
-    @player_name = 'ユーザー'
-    @game_date = '2013-08-25 12:00:00'
-    @down_pins = Array.new(21,0)
   end
 
   def edit
@@ -45,6 +52,15 @@ class ScoresController < ApplicationController
       @game_date = params[:new_game_date]
     end
     @down_pins = params[:new_down_pins]
+
+    vali = Validation.new(@down_pins)
+    #if vali.validate_down_pins >= 1
+    if vali.error?
+      redirect_to action: 'new', from: 'create', ggg: vali.validate_down_pins, game_date: @game_date, down_pins: @down_pins
+
+    end
+
+
     scores = ScoreCalculator.new (@down_pins)
     @score_list = scores.calculate_score_list
     if @from == 'edit'
@@ -61,6 +77,8 @@ class ScoresController < ApplicationController
     @game_date = params[:game_date]
     @down_pins = params[:down_pins]
     @score_list = params[:score_list]
+
+
     Score.create( :player_name => @player_name,
                   :game_date => @game_date,
                   :down_pins_1st_roll_1_frame => @down_pins[0],
