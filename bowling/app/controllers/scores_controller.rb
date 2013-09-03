@@ -21,7 +21,10 @@ class ScoresController < ApplicationController
 
   def new
     if params[:from] == 'create'
-      @player_name =  params[:ggg]
+      @player_name = params[:player_name]
+      @errors_pins_not_number = params[:errors_pins_not_number]
+      @errors_pins_over_10 = params[:errors_pins_over_10]
+      @error_3rd_roll_10frame = params[:error_3rd_roll_10frame]
       @error = 1
       @down_pins = params[:down_pins]
     else
@@ -55,8 +58,8 @@ class ScoresController < ApplicationController
 
     vali = Validation.new(@down_pins)
     #if vali.validate_down_pins >= 1
-    if vali.error?
-      redirect_to action: 'new', from: 'create', ggg: vali.validate_down_pins, game_date: @game_date, down_pins: @down_pins
+    if vali.validate_down_pins != 2
+      redirect_to action: 'new', from: 'create', errors_pins_not_number: vali.errors_pins_not_number, game_date: @game_date, down_pins: @down_pins, errors_pins_over_10: vali.errors_pins_over_10, player_name: @player_name, error_3rd_roll_10frame: vali.error_3rd_roll_10frame
 
     end
 
