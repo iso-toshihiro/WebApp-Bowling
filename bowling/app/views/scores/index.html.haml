@@ -4,15 +4,12 @@
   = link_to '新規作成', new_score_path
   %table{border: '4', cellpadding: '6'}
     %tr
-      %th 番号
       %th プレーヤー
       %th ゲームをした日時
       %th 最終スコア
       %th 操作
     - @scores.each do |score|
       %tr
-        %td{align: 'center'} 
-          = score.id
         %td
           = score.player_name
         %td
