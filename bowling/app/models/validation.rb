@@ -5,28 +5,40 @@ class Validation
   attr_accessor :errors_pins_over_10
   attr_accessor :error_3rd_roll_10frame
   attr_accessor :error_10frame_2nd_3rd_roll
+  attr_accessor :error_list
 
   def initialize(down_pins)
     @down_pins                   = down_pins
     @errors_pins_not_number      = [nil]
     @errors_pins_over_10         = [nil]
+    @error_list                  = []
     @error_3rd_roll_10frame      = 0
-    @error_10frame_2nd_3rd_roll = 0
+    @error_10frame_2nd_3rd_roll  = 0
     @pin = DownPinNumber.new(@down_pins)
+
   end
   
   def count_errors
     error_count = 0
 
-    error_count += validate_pin_is_number_low_10
-    
-    error_count += validate_pin_number_sum_is_low_10_each_frame
+    error_count += validate_pin_is_number_low_10.size - 1
+
+    error_count += validate_pin_number_sum_is_low_10_each_frame.size - 1
 
     error_count += validate_3rd_roll_10frame_is_0_unless_strike_or_spare
 
     error_count += validate_2nd_3rd_roll_sum_10frame_is_low_10
-    
+
     return error_count
+  end
+
+  def get_error_list
+    error_list = []
+    error_list[0] = validate_pin_is_number_low_10
+    error_list[1] = validate_pin_number_sum_is_low_10_each_frame
+    error_list[2] = validate_3rd_roll_10frame_is_0_unless_strike_or_spare
+    error_list[3] = validate_2nd_3rd_roll_sum_10frame_is_low_10
+    return error_list
   end
 
   #倒したピン数の入力値は半角数字で０～１０でないといけない
@@ -36,7 +48,7 @@ class Validation
         @errors_pins_not_number << i
       end
     end
-    return @errors_pins_not_number.size - 1
+    return @errors_pins_not_number
   end
 
   #各フレームの1投目と2投目のピン数の和は10以下でないといけない（10フレーム目は例外がある）
@@ -48,7 +60,7 @@ class Validation
         end
       end
     end
-    return @errors_pins_over_10.size - 1
+    return @errors_pins_over_10
   end
 
   #10フレーム目の3投目はストライクかスペアでないと入力できない
