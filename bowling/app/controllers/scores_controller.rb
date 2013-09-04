@@ -20,15 +20,13 @@ class ScoresController < ApplicationController
   end
 
   def new
-    if params[:from] == 'create'
+    if params[:from] == 'confirm'
       @player_name = params[:player_name]
-      @errors_pins_not_number = params[:errors_pins_not_number]
-      @errors_pins_over_10 = params[:errors_pins_over_10]
-      @error_3rd_roll_10frame = params[:error_3rd_roll_10frame]
-      @error_10frame_2nd_3rd_roll = params[:error_10frame_2nd_3rd_roll]
-      @error = 1
       @down_pins = params[:down_pins]
       @game_date = params[:game_date]
+      validation = Validation.new(@down_pins)
+      @error_list = validation.get_error_list
+      @error = 'yes'
     else
       @player_name = 'ユーザー'
       @down_pins = Array.new(21,0)
@@ -38,12 +36,20 @@ class ScoresController < ApplicationController
   end
 
   def edit
-    @score_db_record = Score.find(params[:id])
-    @player_name = @score_db_record.player_name
-    @game_date = @score_db_record.game_date.localtime
-    score_object = Score.new
-    @down_pins = score_object.get_down_pin_list(@score_db_record)
-    @score_list = score_object.get_score_list(@score_db_record)
+    if params[:from] == 'confirm'
+      @player_name = params[:player_name]
+      @down_pins = params[:down_pins]
+      @game_date = params[:game_date]
+      validation = Validation.new(@down_pins)
+      @error_list = validation.get_error_list
+      @error = 'yes'
+    else
+      @score_db_record = Score.find(params[:id])
+      score_object = Score.new
+      @player_name = @score_db_record.player_name
+      @game_date = @score_db_record.game_date.localtime
+      @down_pins = score_object.get_down_pin_list(@score_db_record)
+    end
     @from = 'edit'
     @id = params[:id]
   end
@@ -57,28 +63,25 @@ class ScoresController < ApplicationController
       @game_date = params[:new_game_date]
     end
     @down_pins = params[:new_down_pins]
-
+    @id = params[:id]
     validation = Validation.new(@down_pins)
     if validation.count_errors > 0
-      redirect_to action: 'new', 
-      from: 'create', 
+      redirect_to action: @from, 
+      from: 'confirm', 
       game_date: @game_date, 
       down_pins: @down_pins, 
-      player_name: @player_name, 
-      errors_pins_not_number: validation.errors_pins_not_number, 
-      errors_pins_over_10: validation.errors_pins_over_10, 
-      error_3rd_roll_10frame: validation.error_3rd_roll_10frame,
-      error_10frame_2nd_3rd_roll: validation.error_10frame_2nd_3rd_roll
+      player_name: @player_name,
+      id: @id
     end
-
     scores = ScoreCalculator.new (@down_pins)
     @score_list = scores.calculate_score_list
     if @from == 'edit'
-      @id = params[:id]
-      @old_player_name = params[:old_player_name]
-      @old_game_date = params[:old_game_date]
-      @old_down_pins = params[:old_down_pins]
-      @old_score_list = params[:old_score_list]
+      @score_db_record = Score.find(params[:id])
+      score_object = Score.new
+      @old_player_name = @score_db_record.player_name
+      @old_game_date = @score_db_record.game_date.localtime
+      @old_down_pins = score_object.get_down_pin_list(@score_db_record)
+      @old_score_list = score_object.get_score_list(@score_db_record)
     end
   end
 
@@ -86,9 +89,8 @@ class ScoresController < ApplicationController
     @player_name = params[:player_name]
     @game_date = params[:game_date]
     @down_pins = params[:down_pins]
-    @score_list = params[:score_list]
-
-
+    scores = ScoreCalculator.new (@down_pins)
+    @score_list = scores.calculate_score_list
     Score.create( :player_name => @player_name,
                   :game_date => @game_date,
                   :down_pins_1st_roll_1_frame => @down_pins[0],
@@ -128,7 +130,8 @@ class ScoresController < ApplicationController
     @player_name = params[:player_name]
     @game_date = params[:game_date]
     @down_pins = params[:down_pins]
-    @score_list = params[:score_list]
+    scores = ScoreCalculator.new (@down_pins)
+    @score_list = scores.calculate_score_list
     @score_db_record = Score.find(params[:id])
     @score_db_record.update_attributes( :player_name => @player_name,
                   :game_date => @game_date,
