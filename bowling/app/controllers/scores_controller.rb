@@ -25,8 +25,10 @@ class ScoresController < ApplicationController
       @errors_pins_not_number = params[:errors_pins_not_number]
       @errors_pins_over_10 = params[:errors_pins_over_10]
       @error_3rd_roll_10frame = params[:error_3rd_roll_10frame]
+      @error_10frame_2nd_3rd_roll = params[:error_10frame_2nd_3rd_roll]
       @error = 1
       @down_pins = params[:down_pins]
+      @game_date = params[:game_date]
     else
       @player_name = 'ユーザー'
       @down_pins = Array.new(21,0)
@@ -56,13 +58,18 @@ class ScoresController < ApplicationController
     end
     @down_pins = params[:new_down_pins]
 
-    vali = Validation.new(@down_pins)
-    #if vali.validate_down_pins >= 1
-    if vali.validate_down_pins != 2
-      redirect_to action: 'new', from: 'create', errors_pins_not_number: vali.errors_pins_not_number, game_date: @game_date, down_pins: @down_pins, errors_pins_over_10: vali.errors_pins_over_10, player_name: @player_name, error_3rd_roll_10frame: vali.error_3rd_roll_10frame
-
+    validation = Validation.new(@down_pins)
+    if validation.count_errors > 0
+      redirect_to action: 'new', 
+      from: 'create', 
+      game_date: @game_date, 
+      down_pins: @down_pins, 
+      player_name: @player_name, 
+      errors_pins_not_number: validation.errors_pins_not_number, 
+      errors_pins_over_10: validation.errors_pins_over_10, 
+      error_3rd_roll_10frame: validation.error_3rd_roll_10frame,
+      error_10frame_2nd_3rd_roll: validation.error_10frame_2nd_3rd_roll
     end
-
 
     scores = ScoreCalculator.new (@down_pins)
     @score_list = scores.calculate_score_list
