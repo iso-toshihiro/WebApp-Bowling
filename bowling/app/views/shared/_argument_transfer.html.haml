@@ -1,10 +1,6 @@
 %input{type: 'hidden', name: 'player_name', value: @player_name}
-%input{type: 'hidden', name: 'old_player_name', value: @player_name}
 %input{type: 'hidden', name: 'game_date', value: @game_date}
-%input{type: 'hidden', name: 'old_game_date', value: @game_date}
 - 0.upto(20) do |i|
   %input{type: 'hidden', name: 'down_pins[]', value: @down_pins[i]}
-  %input{type: 'hidden', name: 'old_down_pins[]', value: @down_pins[i]}
-- 0.upto(9) do |i|
-  %input{type: 'hidden', name: 'score_list[]', value: @score_list[i]}
-  %input{type: 'hidden', name: 'old_score_list[]', value: @score_list[i]}
+
+

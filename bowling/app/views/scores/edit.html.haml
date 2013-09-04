@@ -1,5 +1,7 @@
 %h1 編集
 
+= render 'shared/display_validation_error'
+
 %form{method: 'post', action: '/scores/confirm'}
   = render 'shared/argument_transfer'
   %input{type: 'hidden', name: 'id', value: @id}
