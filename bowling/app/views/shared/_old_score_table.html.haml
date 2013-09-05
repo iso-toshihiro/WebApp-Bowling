@@ -1,0 +1,34 @@
+%p
+  プレーヤーの名前：
+  %b
+    = @old_player_name 
+
+%p
+  ゲームをした日時：
+  %b
+    = @old_game_date
+
+%p
+  %table{border: '1', cellpadding: '3'}
+    %tr
+      - 1.upto(10) do |i|
+        %th
+          %font{size: '2'}
+            = i
+            フレーム
+    %tr
+      - 1.upto(9) do |i|
+        %td
+          = @old_down_pins[2*i-2]
+          　
+          = @old_down_pins[2*i-1]
+      %td
+        = @old_down_pins[18]
+        　
+        = @old_down_pins[19]
+        　
+        = @old_down_pins[20]
+    %tr
+      - 1.upto(10) do |i|
+        %td{align: 'right'}
+          = @old_score_list[i-1]

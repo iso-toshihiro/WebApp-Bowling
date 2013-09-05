@@ -1,0 +1,6 @@
+%input{type: 'hidden', name: 'player_name', value: @player_name}
+%input{type: 'hidden', name: 'game_date', value: @game_date}
+- 0.upto(20) do |i|
+  %input{type: 'hidden', name: 'down_pins[]', value: @down_pins[i]}
+
+
