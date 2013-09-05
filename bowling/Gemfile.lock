@@ -41,7 +41,7 @@ GEM
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
-    execjs (2.0.0)
+    execjs (2.0.1)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -65,7 +65,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.24)
+    mime-types (1.25)
     multi_json (1.7.9)
     mysql2 (0.3.13)
     polyglot (0.3.3)
@@ -128,7 +128,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
-    uglifier (2.1.2)
+    uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
 
