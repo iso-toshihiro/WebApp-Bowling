@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-exam:
+sample_1:
   id: 1
   player_name: '磯　利弘'
   game_date: '2013-09-09 13:32:50'
@@ -35,7 +35,7 @@ exam:
   score_9_frame: 0
   score_10_frame: 0
 
-xam:
+sample_2:
   id: 2
   player_name: 'TANAKA'
   game_date: '2013-09-08 13:32:50'
@@ -70,3 +70,40 @@ xam:
   score_8_frame: 240
   score_9_frame: 270
   score_10_frame: 300
+
+
+sample_3:
+  id: 3
+  player_name: '川崎　武'
+  game_date: '2013-09-08 13:32:20'
+  down_pins_1st_roll_1_frame: 10
+  down_pins_2nd_roll_1_frame: 0
+  down_pins_1st_roll_2_frame: 10
+  down_pins_2nd_roll_2_frame: 0 
+  down_pins_1st_roll_3_frame: 10 
+  down_pins_2nd_roll_3_frame: 0 
+  down_pins_1st_roll_4_frame: 10 
+  down_pins_2nd_roll_4_frame: 0 
+  down_pins_1st_roll_5_frame: 10 
+  down_pins_2nd_roll_5_frame: 0 
+  down_pins_1st_roll_6_frame: 10  
+  down_pins_2nd_roll_6_frame: 0 
+  down_pins_1st_roll_7_frame: 10
+  down_pins_2nd_roll_7_frame: 0 
+  down_pins_1st_roll_8_frame: 10 
+  down_pins_2nd_roll_8_frame: 0 
+  down_pins_1st_roll_9_frame: 10
+  down_pins_2nd_roll_9_frame: 0 
+  down_pins_1st_roll_10_frame: 10 
+  down_pins_2nd_roll_10_frame: 10 
+  down_pins_3rd_roll_10_frame: 0 
+  score_1_frame: 30
+  score_2_frame: 60
+  score_3_frame: 90
+  score_4_frame: 120
+  score_5_frame: 150
+  score_6_frame: 180
+  score_7_frame: 210
+  score_8_frame: 240
+  score_9_frame: 270
+  score_10_frame: 290
