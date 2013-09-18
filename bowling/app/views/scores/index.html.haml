@@ -6,7 +6,11 @@
     %tr
       %th プレーヤー
       %th ゲームをした日時
-      %th 最終スコア
+      %th 
+        - if @sort == 'sort_score_desc'
+          = link_to '最終スコア', sort: 'sort_score_asc'
+        - else
+          = link_to '最終スコア', sort: 'sort_score_desc'
       %th 操作
     - @scores.each do |score|
       %tr
