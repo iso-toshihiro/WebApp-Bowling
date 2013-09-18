@@ -6,7 +6,16 @@ require 'validation'
 class ScoresController < ApplicationController
 
   def index
-    @scores = Score.all
+    if params[:sort] == 'sort_score_desc'
+      @scores = Score.order('score_10_frame DESC')
+      @sort = 'sort_score_desc'
+    elsif params[:sort] == 'sort_score_asc'
+      @scores = Score.order('score_10_frame ASC')
+      @sort = 'sort_score_asc'
+    else
+      @scores = Score.all
+      @sort = ''
+    end
   end
 
   def show
